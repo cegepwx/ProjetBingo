@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ProjetJeuPOO</id>
+    <version>1.0.0</version>
+    <authors>ProjetJeuPOO</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\patri\OneDrive\_CSF_\_Rebon numérique_\_Formation_\_Cours_\2-ApplicationNative\G-Projet\FrameProjet\ProjetJeuPOO\ProjetJeuPOO\bin\Debug\netcoreapp3.1\ProjetJeuPOO.runtimeconfig.json" target="lib\netcoreapp3.1\ProjetJeuPOO.runtimeconfig.json" />
+    <file src="C:\Users\patri\OneDrive\_CSF_\_Rebon numérique_\_Formation_\_Cours_\2-ApplicationNative\G-Projet\FrameProjet\ProjetJeuPOO\ProjetJeuPOO\bin\Debug\netcoreapp3.1\ProjetJeuPOO.dll" target="lib\netcoreapp3.1\ProjetJeuPOO.dll" />
+  </files>
+</package>
