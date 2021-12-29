@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\patri\\.nuget\\packages\\": {}
+    "C:\\Users\\wx527\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\patri\\OneDrive\\_CSF_\\_Rebon numérique_\\_Formation_\\_Cours_\\2-ApplicationNative\\G-Projet\\Projet II\\FrameProjet\\ProjetJeuPOO\\ProjetJeuPOO\\ProjetJeuPOO.csproj",
+      "projectUniqueName": "C:\\Users\\wx527\\OneDrive\\Bureau\\monDossier\\métier\\backend\\ProjetBingo-main\\ProjetJeuPOO\\ProjetJeuPOO.csproj",
       "projectName": "ProjetJeuPOO",
-      "projectPath": "C:\\Users\\patri\\OneDrive\\_CSF_\\_Rebon numérique_\\_Formation_\\_Cours_\\2-ApplicationNative\\G-Projet\\Projet II\\FrameProjet\\ProjetJeuPOO\\ProjetJeuPOO\\ProjetJeuPOO.csproj",
-      "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\patri\\OneDrive\\_CSF_\\_Rebon numérique_\\_Formation_\\_Cours_\\2-ApplicationNative\\G-Projet\\Projet II\\FrameProjet\\ProjetJeuPOO\\ProjetJeuPOO\\obj\\",
+      "projectPath": "C:\\Users\\wx527\\OneDrive\\Bureau\\monDossier\\métier\\backend\\ProjetBingo-main\\ProjetJeuPOO\\ProjetJeuPOO.csproj",
+      "packagesPath": "C:\\Users\\wx527\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wx527\\OneDrive\\Bureau\\monDossier\\métier\\backend\\ProjetBingo-main\\ProjetJeuPOO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wx527\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

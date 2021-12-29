@@ -2,14 +2,18 @@
 using ProjetJeuPOO.Bingo;
 using ProjetJeuPOO.SimiliBlackJack;
 using ProjetJeuPOO.SimiliPendu;
+using System.Collections.Generic;
+
 
 namespace ProjetJeuPOO
 {
-    class Controller
+    public class Controller
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Projet POO");            
+            Session session = new Session();
+            session.ouvrirSession();
         }
+
     }
 }
