@@ -38,6 +38,7 @@ namespace ProjetJeuPOO.Bingo
 
         public void visualiserUneCarteJoueur()
         {
+            Console.WriteLine("");
             Console.WriteLine("B\tI\tN\tG\tO");
 
             for (int i = 0; i < 5; i++)

@@ -1,5 +1,6 @@
 ﻿using ProjetJeuPOO.Bingo;
 using ProjetJeuPOO.SimiliBlackJack;
+using ProjetJeuPOO.SimiliPendu;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,8 +38,6 @@ namespace ProjetJeuPOO
 
             Console.WriteLine("Veuillez saisir votre nom:");
             NameUser = Console.ReadLine();
-            Bingo = new BingoController(NameUser, PartiesBingo, VictorsBingo);
-            BlackJack = new BlackJackController(NameUser, PartiesBlackJack, VictorsBlackJack);
             choisirMenuPrincipal();
         }
 
@@ -60,11 +59,16 @@ namespace ProjetJeuPOO
             switch (choix)
             {
                 case "1":
+                    Bingo = new BingoController(NameUser, PartiesBingo, VictorsBingo);
                     Bingo.menuBingo();
                     menuPrincipal();
                     choisirMenuPrincipal();
                     break;
                 case "2":
+                    BlackJack = new BlackJackController(NameUser, PartiesBlackJack, VictorsBlackJack);
+                    BlackJack.menuBlackJack();
+                    menuPrincipal();
+                    choisirMenuPrincipal();
                     break;
                 case "3":
                     break;
