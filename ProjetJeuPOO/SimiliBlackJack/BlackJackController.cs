@@ -8,19 +8,21 @@ namespace ProjetJeuPOO.SimiliBlackJack
     {
         private string nameUser;
         private int partiesBlackJack;
-        private int victorsBlackJack;
-        private BlackJack blackJack = new BlackJack();
+        private int pointCroupier;
+        private int pointJoueur;
+
+        private BlackJack blackJack;
 
         public string NameUser { get => nameUser; set => nameUser = value; }
         public int PartiesBlackJack { get => partiesBlackJack; set => partiesBlackJack = value; }
-        public int VictorsBlackJack { get => victorsBlackJack; set => victorsBlackJack = value; }
         internal BlackJack BlackJack { get => blackJack; set => blackJack = value; }
+        public int PointCroupier { get => pointCroupier; set => pointCroupier = value; }
+        public int PointJoueur { get => pointJoueur; set => pointJoueur = value; }
 
-        public BlackJackController(string nameUserInput, int parties, int victors)
+        public BlackJackController(string nameUserInput, int parties)
         {
             this.NameUser = nameUserInput;
             this.PartiesBlackJack = parties;
-            this.VictorsBlackJack = victors;
         }
 
         public void menuBlackJack()
@@ -29,6 +31,7 @@ namespace ProjetJeuPOO.SimiliBlackJack
             Console.WriteLine("1. Démarrer un nouveau tournoi ");
             Console.WriteLine("2. Choisir un autre jeu ");
             string choix = Console.ReadLine();
+            Console.WriteLine();
             choisirMenuBlackJack(choix);
         }
 
@@ -37,8 +40,8 @@ namespace ProjetJeuPOO.SimiliBlackJack
             switch (choix)
             {
                 case "1":
-                    afficherSession();
-                    BlackJack.Jouer();
+                    startNewParti();
+                    menuBlackJack();
                     break;
                 case "2":
                     break;
@@ -48,12 +51,21 @@ namespace ProjetJeuPOO.SimiliBlackJack
             }
         }
 
+        public void startNewParti()
+        {
+            PartiesBlackJack++;
+            afficherSession();
+            BlackJack = new BlackJack(PointJoueur, PointCroupier);
+            List<int> pointGagnant = BlackJack.Jouer();
+            PointJoueur = pointGagnant[0];
+            PointCroupier = pointGagnant[1];
+        }
+
         public void afficherSession()
         {
             Console.WriteLine("\n Le nom de l'utilisateur: {0}", NameUser);
-            Console.WriteLine("\n Le nombre de partie joué Black Jack: {0}\n Le nombre de vitoire: {1}\n",
-                    PartiesBlackJack, VictorsBlackJack);
+            Console.WriteLine(" Le nombre de partie joué Black Jack: {0} ", PartiesBlackJack);
+            Console.WriteLine(" Vous avez gagné {0} point(s). Le croupier a gagné {1} point(s).\n", PointJoueur, PointCroupier);
         }
-
     }
 }

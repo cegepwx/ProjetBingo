@@ -21,11 +21,10 @@ namespace ProjetJeuPOO.Bingo
         internal BingoBoulier BingoBoulier { get => bingoBoulier; set => bingoBoulier = value; }
         internal List<BingoCard> ListCartes { get => listCartes; set => listCartes = value; }
 
-        public BingoController(string nameUserInput, int parties, int victors)
+        public BingoController(string nameUserInput, int parties)
         {
             this.NameUser = nameUserInput;
             this.PartiesBingo = parties;
-            this.VictorsBingo = victors;
         }
 
         public void menuBingo()
@@ -37,6 +36,7 @@ namespace ProjetJeuPOO.Bingo
             Console.WriteLine("4.- Tirer une boule");
             Console.WriteLine("5.- Fin de partie\n");
             string choix = Console.ReadLine();
+            Console.WriteLine();
             choisirmenuBingo(choix);
         }
 
@@ -58,6 +58,7 @@ namespace ProjetJeuPOO.Bingo
                     break;
                 case "3":
                     CarteAnnonceur.visualiserCarteAnnonceur();
+                    Console.WriteLine("\nVous avez tiré {0} boules.\n", BingoBoulier.getSize()); 
                     afficherSession();
                     menuBingo();
                     break;
@@ -90,6 +91,7 @@ namespace ProjetJeuPOO.Bingo
             VictorsBingo = 0;
             ListCartes = new List<BingoCard>();
 
+            //Initialiser Carte Annonceur en 0
             for (int i = 0; i < CarteAnnonceur.Valeur.GetLength(0); i++)
             {
             }
@@ -108,7 +110,6 @@ namespace ProjetJeuPOO.Bingo
                 ListCartes.Add(bingoCard);
             }
 
-            
         }
 
         public BingoCard choisirUnecarte()
@@ -127,7 +128,7 @@ namespace ProjetJeuPOO.Bingo
                 string enter = Console.ReadLine();
                 isNumber = int.TryParse(enter, out i);
             } 
-            while (isNumber != true && i<1 && i>4);
+            while (isNumber != true || i> ListCartes.Count);
 
             return ListCartes[i-1];
         }
@@ -147,9 +148,9 @@ namespace ProjetJeuPOO.Bingo
         }
 
         //Ajouter un numéro de la boule tirée à la carte annonceur. 
-        public void ajouterNumber(char cara, int num)
+        public void ajouterNumber(char abc, int num)
         {
-            int col=changerElement(cara);
+            int col=changerElement(abc);
             int raw = 0;
             while(raw < 15)
             {
@@ -163,9 +164,9 @@ namespace ProjetJeuPOO.Bingo
         }
 
         //Changer le numéro de la carte de joueur à 0 s'il est même que la boule.
-        public void changerNumber(char carac, int num)
+        public void changerNumber(char abc, int num)
         {
-            int col = changerElement(carac);
+            int col = changerElement(abc);
 
             for(int k = 0; k < ListCartes.Count; k++)
             {
@@ -218,6 +219,7 @@ namespace ProjetJeuPOO.Bingo
                 Console.WriteLine("1. Retourner au menu des jeux");
                 Console.WriteLine("2. Démarrer une nuvelle partie");
                 choix = Console.ReadLine();
+                Console.WriteLine();
             }
 
             if (choix == "1")

@@ -12,21 +12,15 @@ namespace ProjetJeuPOO
     {
         private string nameUser;
         private int partiesBingo=0;
-        private int victorsBingo=0;
         private int partiesBlackJack=0;
-        private int victorsBlackJack=0;
         private int partiesPendu=0;
-        private int victorsPendu=0;
         private BingoController Bingo;
         private BlackJackController BlackJack;
        
         public string NameUser { get => nameUser; set => nameUser = value; }
         public int PartiesBingo { get => partiesBingo; set => partiesBingo = value; }
-        public int VictorsBingo { get => victorsBingo; set => victorsBingo = value; }
         public int PartiesBlackJack { get => partiesBlackJack; set => partiesBlackJack = value; }
-        public int VictorsBlackJack { get => victorsBlackJack; set => victorsBlackJack = value; }
         public int PartiesPendu { get => partiesPendu; set => partiesPendu = value; }
-        public int VictorsPendu { get => victorsPendu; set => victorsPendu = value; }
 
         public Session()
         {
@@ -38,6 +32,7 @@ namespace ProjetJeuPOO
 
             Console.WriteLine("Veuillez saisir votre nom:");
             NameUser = Console.ReadLine();
+            Console.WriteLine();
             choisirMenuPrincipal();
         }
 
@@ -48,24 +43,24 @@ namespace ProjetJeuPOO
             Console.WriteLine("1- Bingo");
             Console.WriteLine("2- Simili black jack");
             Console.WriteLine("3- Le pendu\n");
-            
         }
 
         public void choisirMenuPrincipal()
         {
             Console.WriteLine("Veuillez choisir le jeu qeu vous voulez:");
             string choix = Console.ReadLine();
+            Console.WriteLine();
          
             switch (choix)
             {
                 case "1":
-                    Bingo = new BingoController(NameUser, PartiesBingo, VictorsBingo);
+                    Bingo = new BingoController(NameUser, PartiesBingo);
                     Bingo.menuBingo();
                     menuPrincipal();
                     choisirMenuPrincipal();
                     break;
                 case "2":
-                    BlackJack = new BlackJackController(NameUser, PartiesBlackJack, VictorsBlackJack);
+                    BlackJack = new BlackJackController(NameUser, PartiesBlackJack);
                     BlackJack.menuBlackJack();
                     menuPrincipal();
                     choisirMenuPrincipal();
@@ -75,9 +70,7 @@ namespace ProjetJeuPOO
                 default:
                     Environment.Exit(0);
                     break;
-
             }
         }
-
     }
 }

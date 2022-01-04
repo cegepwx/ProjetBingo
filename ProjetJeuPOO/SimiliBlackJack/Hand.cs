@@ -6,13 +6,34 @@ namespace ProjetJeuPOO.SimiliBlackJack
 {
     class Hand
     {
-        private int points;
-
-        public int Points { get => points; set => points = value; }
+        private List<Card> cards = new List<Card>();
+        internal List<Card> Cards { get => cards; set => cards = value; }
 
         public Hand()
         {
-            this.Points = points;
+        }
+
+        public void afficherHand(Joueur user)
+        {
+            foreach (Card card1 in user.Hand.Cards)
+            {
+                if (card1.Number == 11)
+                {
+                    Console.WriteLine("La carte est: {0} Jack", card1.Couleur);
+                }
+                else if (card1.Number == 12)
+                {
+                    Console.WriteLine("La carte est: {0} Queen", card1.Couleur);
+                }
+                else if (card1.Number == 13)
+                {
+                    Console.WriteLine("La carte est: {0} King", card1.Couleur);
+                }
+                else
+                {
+                    Console.WriteLine("La carte est: {0} {1} ", card1.Couleur, card1.Number);
+                }
+            }
         }
     }
 }
