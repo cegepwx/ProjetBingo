@@ -6,5 +6,6 @@ namespace ProjetJeuPOO.SimiliPendu
 {
     class ListeDeMots
     {
+        //private List<string> valeur=new List<string> { "imperméabilisation", éligibilité, Possibilité }
     }
 }

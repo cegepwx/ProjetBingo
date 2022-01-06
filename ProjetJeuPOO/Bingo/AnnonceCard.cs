@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace ProjetJeuPOO.Bingo
 {
     class AnnonceCard
@@ -27,13 +28,25 @@ namespace ProjetJeuPOO.Bingo
         public void ajouterNumber(char ballLetter, int ballNumber)
         {
             int col = Utilities.changerElement(ballLetter);
-            int row = 0;
-
+            int row=0;
             while (Valeur[row, col] != 0)
             {
                 row++;
             }
             Valeur[row, col] = ballNumber;
+
+            for (int i = 0; i < row; i++)
+            {
+                for(int j = 0; j < row-i; j++)
+                {
+                    if(Valeur[j,col]> Valeur[j+1, col])
+                    {
+                        int temp = Valeur[j, col];
+                        Valeur[j, col] = Valeur[j + 1, col];
+                        Valeur[j + 1, col] = temp;
+                    }
+                }
+            }
         }
     }
 }
