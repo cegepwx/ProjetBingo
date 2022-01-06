@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProjetJeuPOO.SimiliBlackJack
 {
-    class BlackJack
+    class BlackJack: IBlackJack
     {
         private Deck deck = new Deck();
         private Joueur joueur = new Joueur();
@@ -28,16 +28,14 @@ namespace ProjetJeuPOO.SimiliBlackJack
         public List<int> Jouer()
         {
             avoirUneCarte(Joueur);
-            joueurAvoirCarts();
-            croupierAvoirCarts();
+            joueurAvoirCartes();
+            croupierAvoirCartes();
             whoWin();
-            List<int> listGagnePoint = new List<int>();
-            listGagnePoint.Add(GagneJoueur);
-            listGagnePoint.Add(GagneCroupier);
+            List<int> listGagnePoint = new List<int>{GagneJoueur, GagneCroupier};
             return listGagnePoint;
         }
 
-        public void joueurAvoirCarts()
+        public void joueurAvoirCartes()
         {
             string choix="1";
             while (choix == "1")
@@ -61,21 +59,20 @@ namespace ProjetJeuPOO.SimiliBlackJack
             }
         }
 
-        public void croupierAvoirCarts()
+        public void croupierAvoirCartes()
         {
             do
             {
                 avoirUneCarte(Croupier);
                 Croupier.Points = VoirScore(Croupier);
             }
-            while (!(Joueur.Points > 21 || Croupier.Points > Joueur.Points));
+            while (!(Joueur.Points > 21 || Croupier.Points > Joueur.Points || (Croupier.Points==21 && Joueur.Points == 21)));
             Console.WriteLine("Le score du Croupier est: {0}", Croupier.Points);
         }
 
         public void avoirUneCarte(Joueur user)
         {
-            Card card = Deck.tirerUneCarte();
-            user.Hand.Cards.Add(card);
+            user.Hand.Cards.Add(Deck.tirerUneCarte());
             user.Hand.afficherHand(user);
             Console.WriteLine("Le score est: {0}\n", VoirScore(user));
         }
@@ -125,7 +122,7 @@ namespace ProjetJeuPOO.SimiliBlackJack
         public int DealCard(Card card)
         {
             int points;
-            if(card.Number >=1 && card.Number <= 9)
+            if (card.Number >= 1 && card.Number <= 9)
             {
                 points = card.Number;
             }
@@ -149,31 +146,37 @@ namespace ProjetJeuPOO.SimiliBlackJack
                 GagneCroupier += 2;
                 Console.WriteLine("Le score du Croupier est: {0}. Il a gagné 2 points. Ses points totals est {1}. ", Croupier.Points, GagneCroupier);
             }
-            else if (Joueur.Points > 21 && Croupier.Points > 21)
+            else 
             {
-            }
-            else if (Joueur.Points <= 21 && Croupier.Points > 21)
-            {
-                GagneJoueur++;
-                Console.WriteLine("Votre score est: {0}. Vous avez gagné 1 point. Vos points totals est {1}. ", Joueur.Points, GagneJoueur);
-            }
-            else if (Joueur.Points > 21 && Croupier.Points <= 21)
-            {
-                GagneCroupier++;
-                Console.WriteLine("Le score du Croupier est: {0}. Il a gagné 1 point. Ses points totals est {1}. ", Croupier.Points, GagneCroupier);
-            }
-            else if (Joueur.Points==Croupier.Points)
-            {
-            }
-            else if (Joueur.Points < Croupier.Points)
-            {
-                GagneCroupier++;
-                Console.WriteLine("Le score du Croupier est: {0}. Il a gagné 1 point. Ses points totals est {1}. ", Croupier.Points, GagneCroupier);
-            }
-            else
-            {
-                GagneJoueur++;
-                Console.WriteLine("Votre score est: {0}. Vous avez gagné 1 point. Vos points totals est {1}. ", Joueur.Points, GagneJoueur);
+                if (Joueur.Points > 21 && Croupier.Points > 21)
+                {
+                }
+                else if (Joueur.Points <= 21 && Croupier.Points > 21)
+                {
+                    GagneJoueur++;
+                    Console.WriteLine("Votre score est: {0}. Vous avez gagné 1 point. Vos points totals est {1}. ", Joueur.Points, GagneJoueur);
+                }
+                else if (Joueur.Points > 21 && Croupier.Points <= 21)
+                {
+                    GagneCroupier++;
+                    Console.WriteLine("Le score du Croupier est: {0}. Il a gagné 1 point. Ses points totals est {1}. ", Croupier.Points, GagneCroupier);
+                }
+                else 
+                { 
+                    if (Joueur.Points==Croupier.Points)
+                    {
+                    }
+                    else if (Joueur.Points < Croupier.Points)
+                    {
+                        GagneCroupier++;
+                        Console.WriteLine("Le score du Croupier est: {0}. Il a gagné 1 point. Ses points totals est {1}. ", Croupier.Points, GagneCroupier);
+                    }
+                    else
+                    {
+                        GagneJoueur++;
+                        Console.WriteLine("Votre score est: {0}. Vous avez gagné 1 point. Vos points totals est {1}. ", Joueur.Points, GagneJoueur);
+                    }
+                }
             }
 
             if (GagneCroupier == 4)
@@ -184,7 +187,6 @@ namespace ProjetJeuPOO.SimiliBlackJack
             {
                 Console.WriteLine("\nVous avez gagné.\n");
             }
-            
         }
     }
 }

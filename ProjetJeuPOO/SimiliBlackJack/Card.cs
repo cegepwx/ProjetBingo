@@ -19,5 +19,6 @@ namespace ProjetJeuPOO.SimiliBlackJack
             this.Couleur = color;
             this.Number = no;
         }
+
     }
 }

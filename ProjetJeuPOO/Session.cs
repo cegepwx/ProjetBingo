@@ -22,10 +22,6 @@ namespace ProjetJeuPOO
         public int PartiesBlackJack { get => partiesBlackJack; set => partiesBlackJack = value; }
         public int PartiesPendu { get => partiesPendu; set => partiesPendu = value; }
 
-        public Session()
-        {
-        }
-            
         public void ouvrirSession()
         {
             menuPrincipal();
@@ -39,7 +35,7 @@ namespace ProjetJeuPOO
         public void menuPrincipal()
         {
             Console.WriteLine("\nJeux  Pour  Toujours\n");
-            Console.WriteLine("\nChoisir un des numéro ci-desous pour jouer, saisir les autres pour quitter.");
+            Console.WriteLine("\nChoisir un des numéros ci-dessous pour jouer, saisir les autres pour quitter.");
             Console.WriteLine("1- Bingo");
             Console.WriteLine("2- Simili black jack");
             Console.WriteLine("3- Le pendu\n");
@@ -47,7 +43,7 @@ namespace ProjetJeuPOO
 
         public void choisirMenuPrincipal()
         {
-            Console.WriteLine("Veuillez choisir le jeu qeu vous voulez:");
+            Console.WriteLine("Veuillez choisir le jeu que vous voulez:");
             string choix = Console.ReadLine();
             Console.WriteLine();
          

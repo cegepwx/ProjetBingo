@@ -4,7 +4,16 @@ using System.Text;
 
 namespace ProjetJeuPOO.SimiliPendu
 {
-    class Pendu
+    class Pendu : IPendu
     {
+        public void Jouer()
+        {
+
+        }
+
+        public void AfficherGagnant()
+        {
+
+        }
     }
 }

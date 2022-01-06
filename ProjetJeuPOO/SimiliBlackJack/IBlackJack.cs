@@ -6,8 +6,8 @@ namespace ProjetJeuPOO.SimiliBlackJack
 {
     interface IBlackJack
     {
-        public void Jouer();
-        public void VoirScore();
-        public void DealCard();
+        public List<int> Jouer();
+        public int VoirScore(Joueur user);
+        public int DealCard(Card card);
     }
 }

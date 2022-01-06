@@ -24,11 +24,11 @@ namespace ProjetJeuPOO.Bingo
             Boulier boulier = new Boulier();
             int[,] temp = Valeur;
 
-            for (int j = 0; j < 5; j++)
+            for (int row = 0; row < 5; row++)
             {
-                for (int i = 0; i < 5; i++)
+                for (int col = 0; col < 5; col++)
                 {
-                    temp[j, i] = boulier.tirerNumber(i);
+                    temp[row, col] = boulier.tirerNumber(col);
                 }
             }
             temp[2, 2] = 0;
@@ -36,16 +36,29 @@ namespace ProjetJeuPOO.Bingo
             return Valeur;
         }
 
+        //Changer le numéro de la carte de joueur à 0 s'il est même que la boule.
+        public void changerNumberTo0(char ballLetter, int ballNumber)
+        {
+            int col = Utilities.changerElement(ballLetter);
+            for (int row = 0; row < 5; row++)
+            {
+                if (Valeur[row, col] == ballNumber)
+                {
+                    Valeur[row, col] = 0;
+                }
+            }
+        }
+
         public void visualiserUneCarteJoueur()
         {
             Console.WriteLine("");
             Console.WriteLine("B\tI\tN\tG\tO");
 
-            for (int i = 0; i < 5; i++)
+            for (int row = 0; row < 5; row++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int col = 0; col < 5; col++)
                 {
-                    Console.Write("{0}\t", Valeur[i, j]);
+                    Console.Write("{0}\t", Valeur[row, col]);
                 }
                 Console.WriteLine();
             }
@@ -55,49 +68,46 @@ namespace ProjetJeuPOO.Bingo
         public int Gagne(int[,] element)
         {
             int winners = 0;
-            int valueRaw = 0;
-            int valueCol = 0;
-            int valueJI = 0;
-            int valueIJ = 0;
+            int valeurRow = 0;
+            int valeurCol = 0;
+            int valeur40To04 = 0;
+            int valeur00To44 = 0;
 
-            for (int raw = 0; raw < 5; raw++)
+            for (int row = 0; row < 5; row++)
             {
                 for (int col = 0; col < 5; col++)
                 {
-                    valueRaw = valueRaw + Valeur[raw, col];
+                    valeurRow = valeurRow + Valeur[row, col];
                 }
-                if (valueRaw == 0)
+                if (valeurRow == 0)
                 {
                     winners++;
                 }
-                valueRaw = 0;
+                valeurRow = 0;
             }
-
             for (int col = 0; col < 5; col++)
             {
-                for (int raw = 0; raw < 5; raw++)
+                for (int row = 0; row < 5; row++)
                 {
-                    valueCol = valueCol + Valeur[raw, col];
+                    valeurCol = valeurCol + Valeur[row, col];
                 }
-                if (valueCol == 0)
+                if (valeurCol == 0)
                 {
                     winners++;
                 }
-                valueCol = 0;
+                valeurCol = 0;
             }
-
             for(int i = 0; i < 5; i++)
             {
-                valueIJ = valueIJ + Valeur[i, i];  
-                valueJI = valueJI + Valeur[4 - i, i];
+                valeur00To44 = valeur00To44 + Valeur[i, i];
+                valeur40To04 = valeur40To04 + Valeur[4 - i, i];
             }
 
-            if (valueIJ == 0)
+            if (valeur00To44 == 0)
             {
                 winners++;
             }
-
-            if (valueJI == 0)
+            if (valeur40To04 == 0)
             {
                 winners++;
             }

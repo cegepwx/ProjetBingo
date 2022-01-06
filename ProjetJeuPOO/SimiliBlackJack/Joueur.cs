@@ -13,9 +13,8 @@ namespace ProjetJeuPOO.SimiliBlackJack
         internal Hand Hand { get => hand; set => hand = value; }
         public bool GagneRapide { get => gagneRapide; set => gagneRapide = value; }
 
-        public Joueur()
-        {
-
-        }
+        //public Joueur()
+        //{
+        //}
     }
 }

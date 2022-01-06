@@ -15,13 +15,12 @@ namespace ProjetJeuPOO.Bingo
         public int Number { get => number; set => number = value; }
         public char Letter { get => letter; set => letter = value; }
 
-        public BingoBall(int num, char carac)
+        public BingoBall(char ballLetter,int ballNumber)
         {
-            this.Number = num;
-            this.Letter = carac;
+            this.Number = ballNumber;
+            this.Letter = ballLetter;
         }
 
     }
 
-    
 }

@@ -7,9 +7,9 @@ namespace ProjetJeuPOO.SimiliBlackJack
     class BlackJackController
     {
         private string nameUser;
-        private int partiesBlackJack;
-        private int pointCroupier;
-        private int pointJoueur;
+        private int partiesBlackJack=0;
+        private int pointCroupier=0;
+        private int pointJoueur=0;
 
         private BlackJack blackJack;
 
@@ -27,7 +27,7 @@ namespace ProjetJeuPOO.SimiliBlackJack
 
         public void menuBlackJack()
         {
-            Console.WriteLine("Veuillez choisir:");
+            Console.WriteLine("\nVeuillez choisir:");
             Console.WriteLine("1. Démarrer un nouveau tournoi ");
             Console.WriteLine("2. Choisir un autre jeu ");
             string choix = Console.ReadLine();
