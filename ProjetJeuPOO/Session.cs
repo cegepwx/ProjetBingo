@@ -16,6 +16,7 @@ namespace ProjetJeuPOO
         private int partiesPendu=0;
         private BingoController Bingo;
         private BlackJackController BlackJack;
+        private Pendu Pendu;
        
         public string NameUser { get => nameUser; set => nameUser = value; }
         public int PartiesBingo { get => partiesBingo; set => partiesBingo = value; }
@@ -62,6 +63,10 @@ namespace ProjetJeuPOO
                     choisirMenuPrincipal();
                     break;
                 case "3":
+                    Pendu = new Pendu(NameUser,PartiesPendu);
+                    Pendu.Jouer();
+                    menuPrincipal();
+                    choisirMenuPrincipal();
                     break;
                 default:
                     Environment.Exit(0);
