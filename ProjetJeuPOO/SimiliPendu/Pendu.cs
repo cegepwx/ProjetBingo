@@ -55,6 +55,7 @@ namespace ProjetJeuPOO.SimiliPendu
                     commencer();
                     break;
                 case "2":
+
                     break;
             }
         }
@@ -108,12 +109,13 @@ namespace ProjetJeuPOO.SimiliPendu
                 {
                     avoirIndice();
                 }
-                else
-                {
-                    userEssaie();
-                }
+                userEssaie();
             }
-            userEssaie();
+            else
+            {
+                userEssaie();
+            }
+            
         }
 
         public void avoirIndice()
@@ -144,6 +146,11 @@ namespace ProjetJeuPOO.SimiliPendu
                 Console.WriteLine("\nVous avez encore {0} essaie.", NumberEssaie);
                 Console.WriteLine("Veueillez saisir :");
                 string input = Console.ReadLine();
+
+                if (input.Length > MotsChoisi.Length)
+                {
+                    input=input.Substring(0, MotsChoisi.Length);
+                }
                 trouverLetters(input);
                 AfficherGagnant();
                 if (gagnerPoints(input))
@@ -157,6 +164,7 @@ namespace ProjetJeuPOO.SimiliPendu
             {
                 Console.WriteLine("Vous avez perdu.");
                 Console.WriteLine("Le mots est: {0}", MotsChoisi);
+                NumberEssaie = 5;
             }
             menuPendu();
         }
@@ -182,10 +190,10 @@ namespace ProjetJeuPOO.SimiliPendu
             {
                 GagnePoint++;
                 isGagne = true;
-                Console.WriteLine("Vous avez gagné 1 partie. Vos points sont: {0}", GagnePoint);
+                Console.WriteLine("\nVous avez gagné 1 partie. Vos points sont: {0}", GagnePoint);
                 if (GagnePoint == 3)
                 {
-                    Console.WriteLine("Félicitation! Vous avez gagné!");
+                    Console.WriteLine("\nFélicitation! Vous avez gagné!\n");
                     Jouer();
                 }
             }
