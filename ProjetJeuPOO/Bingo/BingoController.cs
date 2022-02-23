@@ -14,17 +14,10 @@ namespace ProjetJeuPOO.Bingo
         private List<BingoCard> cartesJoueur = new List<BingoCard>();
         private BingoBoulier bingoBoulier = new BingoBoulier();
 
-        public string NameUser { get => nameUser; set => nameUser = value; }
-        public int PartiesBingo { get => partiesBingo; set => partiesBingo = value; }
-        public int VictorsBingo { get => victorsBingo; set => victorsBingo = value; }
-        internal AnnonceCard CarteAnnonceur { get => carteAnnonceur; set => carteAnnonceur = value; }
-        internal BingoBoulier BingoBoulier { get => bingoBoulier; set => bingoBoulier = value; }
-        internal List<BingoCard> CartesJoueur { get => cartesJoueur; set => cartesJoueur = value; }
-
         public BingoController(string nameUserInput, int parties)
         {
-            this.NameUser = nameUserInput;
-            this.PartiesBingo = parties;
+            this.nameUser = nameUserInput;
+            this.partiesBingo = parties;
         }
 
         public void menuBingo()
@@ -46,36 +39,16 @@ namespace ProjetJeuPOO.Bingo
             switch (choix)
             {
                 case "1":
-                    initialiserNewPartie();
-                    afficherSession();
-                    menuBingo();
+                    newPart();
                     break;
                 case "2":
-                    BingoCard card = choisirUnecarteAfficher();
-                    card.visualiserUneCarteJoueur();
-                    VictorsBingo = card.Gagne(card.Valeur);
-                    afficherSession();
-                    menuBingo();
+                    showPlayerCard();
                     break;
                 case "3":
-                    CarteAnnonceur.visualiserCarteAnnonceur();
-                    Console.WriteLine("\nVous avez tiré {0} boules.\n", BingoBoulier.getSize()); 
-                    menuBingo();
+                    showAnnounceCard();
                     break;
                 case "4":
-                    if (BingoBoulier.isEmpty())
-                    {
-                        Console.WriteLine("Fin de partie");
-                        finPartie();
-                    }
-                    BingoBall temp = BingoBoulier.tirerUneBoule();
-                    CarteAnnonceur.ajouterNumber(temp.Letter, temp.Number);
-
-                    for (int k = 0; k < CartesJoueur.Count; k++)
-                    {
-                        CartesJoueur[k].changerNumberTo0(temp.Letter, temp.Number);
-                    }
-                    menuBingo();
+                    tirerBoule();
                     break;
                 case "5":
                     finPartie();
@@ -86,19 +59,59 @@ namespace ProjetJeuPOO.Bingo
             }
         }
 
+        public void newPart()
+        {
+            initialiserNewPartie();
+            afficherSession();
+            menuBingo();
+        }
+
+        public void showPlayerCard()
+        {
+            BingoCard card = choisirUnecarteAfficher();
+            card.visualiserUneCarteJoueur();
+            victorsBingo = card.Gagne(card.Valeur);
+            afficherSession();
+            menuBingo();
+        }
+
+        public void showAnnounceCard()
+        {
+            carteAnnonceur.visualiserCarteAnnonceur();
+            Console.WriteLine("\nVous avez tiré {0} boules.\n", bingoBoulier.getSize());
+            menuBingo();
+        }
+
+        public void tirerBoule()
+        {
+            if (bingoBoulier.isEmpty())
+            {
+                Console.WriteLine("Fin de partie");
+                finPartie();
+            }
+            BingoBall temp = bingoBoulier.tirerUneBoule();
+            carteAnnonceur.ajouterNumber(temp.Letter, temp.Number);
+
+            for (int k = 0; k < cartesJoueur.Count; k++)
+            {
+                cartesJoueur[k].changerNumberTo0(temp.Letter, temp.Number);
+            }
+            menuBingo();
+        }
+
         public void afficherSession()
         {
-            Console.WriteLine("\n Le nom de l'utilisateur: {0}", NameUser);
+            Console.WriteLine("\n Le nom de l'utilisateur: {0}", nameUser);
             Console.WriteLine("\n Le nombre de partie joué Bingo: {0}\n Le nombre de vitoire: {1}\n",
-                    PartiesBingo, VictorsBingo);
+                    partiesBingo, victorsBingo);
         }
 
         public void initialiserNewPartie()
         {
-            PartiesBingo++;
-            BingoBoulier.restartBoulier();
-            VictorsBingo = 0;
-            CartesJoueur = new List<BingoCard>();
+            partiesBingo++;
+            bingoBoulier.restartBoulier();
+            victorsBingo = 0;
+            cartesJoueur = new List<BingoCard>();
 
             string userInput = "";
 
@@ -111,7 +124,7 @@ namespace ProjetJeuPOO.Bingo
             {
                 BingoCard bingoCard =new BingoCard();
                 bingoCard.createBingoCard();
-                CartesJoueur.Add(bingoCard);
+                cartesJoueur.Add(bingoCard);
             }
         }
 
@@ -120,26 +133,26 @@ namespace ProjetJeuPOO.Bingo
             int quelleCarte;
             bool isNumber;
 
-            if (CartesJoueur.Count == 0)
+            if (cartesJoueur.Count == 0)
             {
                 Console.WriteLine("Vous avez aucune carte. Veuillez choisir <Initialiser une nouvelle partie>.");
                 menuBingo();
             }
             do
             {
-                Console.WriteLine("Vous avez {0} carte(s), quelle carte vous voulez visualiser? ", CartesJoueur.Count);
+                Console.WriteLine("Vous avez {0} carte(s), quelle carte vous voulez visualiser? ", cartesJoueur.Count);
                 string enter = Console.ReadLine();
                 isNumber = int.TryParse(enter, out quelleCarte);
             }
-            while (isNumber != true || quelleCarte > CartesJoueur.Count);
+            while (isNumber != true || quelleCarte > cartesJoueur.Count);
 
-            return CartesJoueur[quelleCarte - 1];
+            return cartesJoueur[quelleCarte - 1];
         }
 
         public void finPartie()
         {
-            CartesJoueur = new List<BingoCard>();
-            VictorsBingo = 0;
+            cartesJoueur = new List<BingoCard>();
+            victorsBingo = 0;
             string choix = "";
             while (!(choix == "1" || choix == "2"))
             {

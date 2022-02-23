@@ -9,9 +9,6 @@ namespace ProjetJeuPOO.Bingo
         private Boulier boulier = new Boulier();
         private List<BingoBall> ballsTire = new List<BingoBall>();
 
-        internal Boulier Boulier { get => boulier; set => boulier = value; }
-        internal List<BingoBall> BallsTire { get => ballsTire; set => ballsTire = value; }
-
         public BingoBall tirerUneBoule()
         {
             BingoBall ball = getRanbomBall();
@@ -27,7 +24,7 @@ namespace ProjetJeuPOO.Bingo
 
         public void add(BingoBall element)
         {
-            BallsTire.Add(element);
+            ballsTire.Add(element);
         }
 
         public void restartBoulier()
@@ -38,7 +35,7 @@ namespace ProjetJeuPOO.Bingo
         public bool isEmpty()
         {
             bool vide = false;
-            if(Boulier.BallsInBoulier.Count == 0)
+            if(boulier.BallsInBoulier.Count == 0)
             {
                 vide = true;
             }
@@ -47,7 +44,7 @@ namespace ProjetJeuPOO.Bingo
 
         public int getSize()
         {
-            return BallsTire.Count;
+            return ballsTire.Count;
         }
 
     }
